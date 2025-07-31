@@ -1,0 +1,79 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run type checking
+      run: npm run type-check
+      
+    - name: Run linting
+      run: npm run lint
+      
+    - name: Build project
+      run: npm run build
+      env:
+        VITE_SUPABASE_URL: https://example.supabase.co
+        VITE_SUPABASE_ANON_KEY: example-key
+        VITE_OWNER_PASSWORD: test-owner
+        VITE_EMPLOYEE_PASSWORD: test-employee
+        VITE_VIEWER_PASSWORD: test-viewer
+        VITE_LOGO_URL: https://example.com/logo.png
+        VITE_QR_CODE_URL: https://example.com/qr-code.png
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build for production
+      run: npm run build
+      env:
+        VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+        VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+        VITE_OWNER_PASSWORD: ${{ secrets.VITE_OWNER_PASSWORD }}
+        VITE_EMPLOYEE_PASSWORD: ${{ secrets.VITE_EMPLOYEE_PASSWORD }}
+        VITE_VIEWER_PASSWORD: ${{ secrets.VITE_VIEWER_PASSWORD }}
+        VITE_LOGO_URL: ${{ secrets.VITE_LOGO_URL }}
+        VITE_QR_CODE_URL: ${{ secrets.VITE_QR_CODE_URL }}
+        
+    # Uncomment and configure for your deployment platform
+    # - name: Deploy to Vercel
+    #   uses: vercel/action@v20
+    #   with:
+    #     vercel-token: ${{ secrets.VERCEL_TOKEN }}
+    #     vercel-org-id: ${{ secrets.ORG_ID }}
+    #     vercel-project-id: ${{ secrets.PROJECT_ID }}
+    #     vercel-args: '--prod'

@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  border-radius: 4px;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(249, 115, 22, 0.1);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Gradient backgrounds */
+.bg-mesh {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+}
+
+.bg-mesh-warm {
+  background: linear-gradient(135deg, #431407 0%, #7c2d12 25%, #9a3412 50%, #c2410c 75%, #ea580c 100%);
+}
+
+/* Card styles */
+.card {
+  @apply bg-gradient-to-br from-dark-800/90 to-dark-900/90 backdrop-blur-lg rounded-xl shadow-card border border-dark-700/50;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  @apply shadow-card-hover border-accent-500/30;
+  transform: translateY(-2px);
+}
+
+.card-glow {
+  @apply shadow-glow;
+}
+
+.card-glow:hover {
+  @apply shadow-glow-lg;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-gradient-to-r from-accent-500 to-accent-600 text-white font-medium px-6 py-3 rounded-lg shadow-lg;
+  @apply hover:from-accent-600 hover:to-accent-700 hover:shadow-xl;
+  @apply active:scale-95 transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply bg-gradient-to-r from-dark-700 to-dark-800 text-dark-200 font-medium px-6 py-3 rounded-lg shadow-lg border border-dark-600;
+  @apply hover:from-dark-600 hover:to-dark-700 hover:text-white hover:shadow-xl;
+  @apply active:scale-95 transition-all duration-200;
+}
+
+.btn-accent {
+  @apply bg-gradient-to-r from-accent-500 to-accent-600 text-white font-medium px-4 py-2 rounded-lg shadow-lg;
+  @apply hover:from-accent-600 hover:to-accent-700 hover:shadow-glow;
+  @apply active:scale-95 transition-all duration-200;
+}
+
+/* Input styles */
+.input-primary {
+  @apply bg-dark-800/50 border border-dark-600 rounded-lg px-4 py-3 text-white placeholder-dark-400;
+  @apply focus:ring-2 focus:ring-accent-500 focus:border-accent-500 focus:outline-none;
+  @apply transition-all duration-200;
+}
+
+.input-primary:focus {
+  @apply shadow-glow;
+}
