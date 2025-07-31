@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🍽️ C Square Restaurant Management System
 
 A modern, full-stack restaurant management application built with React, TypeScript, and Supabase. This comprehensive system handles the complete restaurant workflow from customer ordering to backend management and analytics.
@@ -269,3 +270,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [⭐ Star this repo](https://github.com/pritam-ray/pos_for_cafe_v2) • [🍴 Fork it](https://github.com/pritam-ray/pos_for_cafe_v2/fork) • [📝 Report Bug](https://github.com/pritam-ray/pos_for_cafe_v2/issues)
 
 </div>
+=======
+# pos_for_cafe_v2
+more features and more usability than version 1
+>>>>>>> 6fb9012ea1daaf97ad61c7b490bca5dc8a14883b
